@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Student-Management-System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/students}">Student Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" th:href="@{/students}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown link
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" th:href="@{/students}">Student Management</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="container">
+        <div class="row">
+            <h1>List Students</h1>
+        </div>
+        
+        <div class = "row">
+        <div class = "col-lg-3">
+        	<a th:href= "@{/students/add}" class="btn btn-primary btn-sm mb-3">Add</a>
+        </div>
+        </div>
+
+        <table class="table table-dark table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>First_Name</th>
+                    <th>Last_Name</th>
+                    <th>Class</th>
+                    <th>Grades</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student: ${students}">
+                    <td th:text="${student.firstName}"></td>
+                    <td th:text="${student.lastName}"></td>
+                    <td th:text="${student.standard}"></td>
+                    <td th:text="${student.grades}"></td>
+                    <td>
+                    	<a th:href="@{students/edit/{id}(id=${student.rollId})}"
+                    	class="btn btn-primary">Update</a></td>
+                    	
+                    <td>
+                    	<a th:href="@{students/{id}(id=${student.rollId})}"
+                    	class="btn btn-primary">Delete</a></td>
+                    <!-- Add your actions here if needed -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
